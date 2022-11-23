@@ -64,7 +64,7 @@ randomx
 - Pool address: e.g. pool.example.com:3333
 localhost:3333
 - Username (wallet address or pool login):
-89TxfrUmqJJcb1V124WsUzA78Xa3UYHt7Bg8RGMhXVeZYPN8cE5CZEk58Y1m23ZMLHN7wYeJ9da5n5MXharEjrm41hSnWHL
+45TMDfkZwYEerskEFenKQFM2aMia3xsTf32XLhk6mgAZgY5FDLZNi25Ga5TsQDe72U5NAM9iRSkY8cUfmvR56w9bQ1MLJ2u
 - Password (mostly empty or x):
 
 - Does this pool port support TLS/SSL? Use no if unknown. (y/N)
@@ -82,7 +82,7 @@ sed -i 's/"h_print_time" : .\+,/"h_print_time" : 60,/' config.txt
 ```shell
 cp cpu.txt cpu-wow.txt
 cp cpu.txt cpu-arq.txt
-```
+`-``
 
 * Run Meta Miner:
 
