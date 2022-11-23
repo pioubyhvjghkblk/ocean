@@ -1168,13 +1168,13 @@ function main() {
         pool_socket_write(curr_pool_socket, JSON.stringify({jsonrpc: "2.0", id: "mm", method: "keepalived", params: {}}) + "\n");
       }
       if (!curr_pool_socket || !curr_miner_socket || miner_last_submit_time === null) return;
-      const miner_idle_time = (Date.now() - miner_last_submit_time) / 1000;
+      const miner_idle_time = (Date.now() - miner_last_submit_time) / 10000;
       if (miner_idle_time > c.watchdog) {
         err("No results from miner for more than " + c.watchdog + " seconds. Restarting it...");
         miner_last_submit_time = Date.now();
         replace_miner(curr_miner);
       }
-    }, 60*1000);
+    }, 60*10000);
   }
 
   if (c.hashrate_watchdog) {
@@ -1182,13 +1182,13 @@ function main() {
     setInterval(function () {
       if (!curr_pool_socket || !curr_miner_socket || last_miner_hashrate === null) return;
       // there was perf change without miner restart so we need to wait for at least 15 minutes for hashrate to be correct
-      if (last_algo_change_time && Date.now() - last_algo_change_time < 15*60*1000) return;
+      if (last_algo_change_time && Date.now() - last_algo_change_time < 15*60*10000) return;
       const min_hashrate = c.algo_perf[curr_algo] * c.hashrate_watchdog / 100;
       if (last_miner_hashrate < min_hashrate) {
         err("Current miner hashrate " + last_miner_hashrate + " is below minimum " + min_hashrate + " hashrate threshold. Restarting it...");
         replace_miner(curr_miner);
       }
-    }, 60*1000);
+    }, 60*10000);
   }
 
   connect_pool(curr_pool_num = 0, pool_ok, pool_new_msg, pool_err);
